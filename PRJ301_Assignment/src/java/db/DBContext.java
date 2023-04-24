@@ -9,7 +9,7 @@ import java.sql.SQLException;
  * @author thangtdhe160619
  */
 public class DBContext {
-
+    public Connection connection;
     public Connection getConnection() throws SQLException {
         try {
             Connection con = null;

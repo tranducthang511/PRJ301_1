@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.io.PrintWriter;
 
 /**
  *
@@ -19,21 +20,8 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        AcademicStaffDAO acdDao = new AcademicStaffDAO();
-        String checkPassword = acdDao.getPassword(username);
-        if (password.equals(checkPassword) || session.getAttribute("username") != null) {
-            session.setAttribute("username", username);
-
-           response.sendRedirect("ShowListStudentRegisterServlet");
-        } else {
-            request.setAttribute("errorLogin", "Wrong username or password!!!");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        }
-
+        PrintWriter pr = response.getWriter();
+        pr.println("welcome");
     }
 
     @Override
