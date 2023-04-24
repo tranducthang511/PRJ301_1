@@ -5,7 +5,6 @@
 package model;
 
 import model.Class_Student;
-import db.DBContext;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -19,6 +18,6 @@ import query.Query;
  *
  * @author admin
  */
-public class Class_StudentDAO {
-    
+public class Class_StudentDAO extends MyDAO {
+
 }

@@ -12,6 +12,8 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import model.AdminDAO;
+import model.StudentDAO;
 
 /**
  *
@@ -26,7 +28,8 @@ public class LoginFilter implements Filter {
         HttpSession session = ((HttpServletRequest) request).getSession();
         String xusername = request.getParameter("username");
         String xpassword = request.getParameter("password");
-        if (xpassword.equals("abc123")) {
+        StudentDAO u = new StudentDAO();
+        if (xpassword.equals(u.getStudentByEmail(xusername).getPassword())) {
             session.setAttribute("username", xusername);
             session.setAttribute("password", xpassword);
             chain.doFilter(request, response);

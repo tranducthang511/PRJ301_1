@@ -5,7 +5,6 @@
 package model;
 
 import model.Class;
-import db.DBContext;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

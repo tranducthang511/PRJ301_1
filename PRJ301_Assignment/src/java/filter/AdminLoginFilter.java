@@ -12,6 +12,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import model.AdminDAO;
 
 /**
  *
@@ -26,7 +27,8 @@ public class AdminLoginFilter implements Filter {
         HttpSession session = ((HttpServletRequest) request).getSession();
         String xusername = request.getParameter("username");
         String xpassword = request.getParameter("password");
-        if (xpassword.equals("administrator96")) {
+        AdminDAO u = new AdminDAO();
+        if (xpassword.equals(u.getAdminByUsername(xusername).getPassword())) {
             session.setAttribute("username", xusername);
             session.setAttribute("password", xpassword);
             chain.doFilter(request, response);

@@ -1,7 +1,6 @@
 package model;
 
 import model.Admin;
-import db.DBContext;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
