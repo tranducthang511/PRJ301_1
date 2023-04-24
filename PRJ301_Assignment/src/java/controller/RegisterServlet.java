@@ -16,21 +16,16 @@ import model.*;
  *
  * @author thangtdhe160619
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"login"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "RegisterServlet", urlPatterns = {"register"})
+public class RegisterServlet extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        PrintWriter pr = response.getWriter();
-        pr.println("welcome " + session.getAttribute("username"));
-        SubjectsStatusDAO u = new SubjectsStatusDAO();
-        StudentDAO s = new StudentDAO();
-        String xEmail = session.getAttribute("username").toString();
-        String xId = (String) s.getStudentByEmail(xEmail).getId();
-        session.setAttribute("user_id", xId);
-        request.getRequestDispatcher("Register.jsp").forward(request, response);
+        SubjectsStatusDAO u= new SubjectsStatusDAO();
+        SubjectsStatus x = u.getSubjectsStatusById(session.getId().toString());
+
     }
     
     @Override

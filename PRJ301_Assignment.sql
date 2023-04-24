@@ -52,5 +52,5 @@ INSERT INTO Class_Student(class_id,student_id) VALUES('PRJ301_01','HE150977')
 
 INSERT INTO Admin (id,[name],dob,gender,email,[password]) VALUES (1,'Tran Duc Thang','2002-11-5', 1, 'thangtdhe160619@fpt.edu.vn', 'administrator96')
 GO
-select * from subjectsstatus
+select * from SubjectsStatus where id = 'HE160619'
 GO
