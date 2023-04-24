@@ -10,15 +10,15 @@ import java.sql.Date;
  *
  * @author admin
  */
-public class Student {
-       private int id;
+public class Admin {
+           private int id;
     private String Name;
     private Date DOB;
     private boolean gender;
     private String email;
     private String password;
 
-    public Student(int id, String Name, Date DOB, boolean gender, String email, String password) {
+    public Admin(int id, String Name, Date DOB, boolean gender, String email, String password) {
         this.id = id;
         this.Name = Name;
         this.DOB = DOB;

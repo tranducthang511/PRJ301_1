@@ -12,8 +12,8 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author thangtdhe160619
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"login"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "AdminLoginServlet", urlPatterns = {"adminlogin"})
+public class AdminLoginServlet extends HttpServlet {
     
      @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
            response.sendRedirect("ShowListStudentRegisterServlet");
         } else {
             request.setAttribute("errorLogin", "Wrong username or password!!!");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
         }
 
     }
