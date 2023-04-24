@@ -11,14 +11,14 @@ import java.sql.Date;
  * @author admin
  */
 public class Student {
-       private int id;
+       private String id;
     private String Name;
     private Date DOB;
     private boolean gender;
     private String email;
     private String password;
 
-    public Student(int id, String Name, Date DOB, boolean gender, String email, String password) {
+    public Student(String id, String Name, Date DOB, boolean gender, String email, String password) {
         this.id = id;
         this.Name = Name;
         this.DOB = DOB;
@@ -27,11 +27,11 @@ public class Student {
         this.password = password;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

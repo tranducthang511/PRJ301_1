@@ -9,7 +9,7 @@ package model;
  * @author admin
  */
 public class SubjectsStatus {
-    private int id;
+    private String id;
     private String MAE101;
     private String PRF192;
     private String MAD101;
@@ -22,7 +22,7 @@ public class SubjectsStatus {
     private String JPD316;
     private String PRM392;  
 
-    public SubjectsStatus(int id, String MAE101, String PRF192, String MAD101, String PRO192, String JPD113, String LAB211, String MAS291, String JPD123, String PRJ301, String JPD316, String PRM392) {
+    public SubjectsStatus(String id, String MAE101, String PRF192, String MAD101, String PRO192, String JPD113, String LAB211, String MAS291, String JPD123, String PRJ301, String JPD316, String PRM392) {
         this.id = id;
         this.MAE101 = MAE101;
         this.PRF192 = PRF192;
@@ -37,11 +37,11 @@ public class SubjectsStatus {
         this.PRM392 = PRM392;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
