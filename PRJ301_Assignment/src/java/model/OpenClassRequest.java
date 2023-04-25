@@ -8,15 +8,13 @@ package model;
  *
  * @author admin
  */
-public class Class {
+public class OpenClassRequest {
     private String id;
-    private String Subject;
-    private String time;
+    private String subject;
 
-    public Class(String id, String Subject, String time) {
+    public OpenClassRequest(String id, String subject) {
         this.id = id;
-        this.Subject = Subject;
-        this.time = time;
+        this.subject = subject;
     }
 
     public String getId() {
@@ -28,19 +26,11 @@ public class Class {
     }
 
     public String getSubject() {
-        return Subject;
+        return subject;
     }
 
-    public void setSubject(String Subject) {
-        this.Subject = Subject;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
+    
 }
