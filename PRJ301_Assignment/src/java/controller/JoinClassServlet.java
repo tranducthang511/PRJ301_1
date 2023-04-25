@@ -16,16 +16,21 @@ import model.*;
  *
  * @author thangtdhe160619
  */
-@WebServlet(name = "RegisterServlet", urlPatterns = {"/register"})
-public class RegisterServlet extends HttpServlet {
+@WebServlet(name = "JoinClassServlet", urlPatterns = {"/joinclass"})
+public class JoinClassServlet extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String subject = request.getParameter("subject");
-        session.setAttribute("subject", subject);
-        request.getRequestDispatcher("ChooseClass.jsp").forward(request, response);
+        String cl = request.getParameter("class");
+        Class_StudentDAO u = new Class_StudentDAO();
+        u.insert(cl, session.getAttribute("user_id").toString());
+        SubjectsStatusDAO s = new SubjectsStatusDAO();
+        s.update(session.getAttribute("subject").toString(), session.getAttribute("user_id").toString());
+        response.getWriter().println("register successfully");
+        response.getWriter().println("<p><a href=\"Register.jsp\"> Back to home </a>");
 
     }
     

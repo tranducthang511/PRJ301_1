@@ -3,6 +3,7 @@
     Created on : Apr 24, 2023, 6:24:50 PM
     Author     : admin
 --%>
+<%@page import = "java.util.*" %>
 <%@page import = "model.Student" %>
 <%@page import = "model.StudentDAO" %>
 <%@page import = "model.SubjectsStatus" %>
@@ -12,7 +13,9 @@
 <%
     SubjectsStatusDAO u= new SubjectsStatusDAO();
     StudentDAO s= new StudentDAO();
-    SubjectsStatus x = u.getSubjectsStatusById(s.getStudentByEmail("thangtdhe160619@fpt.edu.vn").getId());
+    SubjectsStatus x = u.getSubjectsStatusById(s.getStudentByEmail(session.getAttribute("username").toString()).getId());
+    ArrayList<String> lst = new ArrayList();
+    lst = u.getNotPassedSubjects(x.getId());
 %>
 <html>
     <head>
@@ -62,11 +65,13 @@
             <div class="container-login">
                 <h1>Register repeat a course</h1>
                 <form action="register" method="POST">
-                    <select class="form-select" aria-label="Default select example">
+                    <select name="subject">
                         <option selected>Choose course  </option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <%
+                            for(String sub:lst){
+                        %>
+                        <option value="<%=sub%>"> <%=sub%>  </option>
+                        <%}%>
                     </select>
                     <p><p><p><button type="submit" class="btn btn-primary">Register</button>
                 </form>

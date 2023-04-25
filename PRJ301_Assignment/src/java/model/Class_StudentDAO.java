@@ -19,4 +19,17 @@ import java.util.ArrayList;
  */
 public class Class_StudentDAO extends MyDAO {
 
+    public void insert(String cl, String user_id) {
+       xSql = "INSERT INTO Class_Student(class_id,student_id) VALUES(?,?)";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, cl);
+            ps.setString(2, user_id);
+            rs = ps.executeQuery();
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
