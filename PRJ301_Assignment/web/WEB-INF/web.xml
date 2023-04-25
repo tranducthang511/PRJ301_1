@@ -40,6 +40,14 @@
         <servlet-name>JoinClassServlet</servlet-name>
         <servlet-class>controller.JoinClassServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListClassServlet</servlet-name>
+        <servlet-class>controller.ListClassServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListRequestOpenClassServlet</servlet-name>
+        <servlet-class>controller.ListRequestOpenClassServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>JoinClassServlet</servlet-name>
         <url-pattern>/joinclass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListClassServlet</servlet-name>
+        <url-pattern>/listclass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListRequestOpenClassServlet</servlet-name>
+        <url-pattern>/listrequest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
