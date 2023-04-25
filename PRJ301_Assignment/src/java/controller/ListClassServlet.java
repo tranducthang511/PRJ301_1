@@ -23,6 +23,7 @@ public class ListClassServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
+        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
         ClassDAO u = new ClassDAO();
         ArrayList<model.Class> lst = new ArrayList();
         lst = u.getClasses();
@@ -35,6 +36,7 @@ public class ListClassServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
+        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
         ClassDAO u = new ClassDAO();
         ArrayList<model.Class> lst = new ArrayList();
         lst = u.getClasses();

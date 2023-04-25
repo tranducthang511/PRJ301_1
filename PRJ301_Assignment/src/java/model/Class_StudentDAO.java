@@ -51,4 +51,23 @@ public class Class_StudentDAO extends MyDAO {
         }
         return (t);
     }
+    public ArrayList<String> FindStudentInClass(String class_id){
+        xSql = "Select * from Class_Student where class_id=?";
+        ArrayList<String> t = new ArrayList();
+        try {
+            
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, class_id);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                String xStudent_id = rs.getString("student_id");
+                t.add(xStudent_id);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
 }

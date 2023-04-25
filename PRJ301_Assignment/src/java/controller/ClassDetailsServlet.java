@@ -15,8 +15,8 @@ import model.*;
  *
  * @author thangtdhe160619
  */
-@WebServlet(name = "ListRequestOpenClassServlet", urlPatterns = {"listrequest"})
-public class ListRequestOpenClassServlet extends HttpServlet {
+@WebServlet(name = "ClassDetailsServlet", urlPatterns = {"/classdetails"})
+public class ClassDetailsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -24,7 +24,7 @@ public class ListRequestOpenClassServlet extends HttpServlet {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
         if(session.getAttribute("role")!="admin")request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
-        request.getRequestDispatcher("ListRequest.jsp").forward(request, response);
+        request.getRequestDispatcher("ClassDetails.jsp").forward(request, response);
     }
 
     @Override
@@ -33,7 +33,9 @@ public class ListRequestOpenClassServlet extends HttpServlet {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
         if(session.getAttribute("role")!="admin")request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
-        request.getRequestDispatcher("ListRequest.jsp").forward(request, response);
+        String class_id = request.getParameter("ClassId");
+        request.setAttribute("id", class_id);
+        request.getRequestDispatcher("ClassDetails.jsp").forward(request, response);
     }
 
     @Override

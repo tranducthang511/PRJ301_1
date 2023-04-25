@@ -21,6 +21,8 @@ public class AdminLoginServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
+        String role = "admin";
+        session.setAttribute("role",role);
         request.getRequestDispatcher("listclass").forward(request, response);
     }
 

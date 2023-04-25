@@ -31,7 +31,7 @@
                 <hr>
                 <ul class="list-group">
                     <c:forEach var="c" items="${ListClass}">
-                        <form action="class" method="POST">
+                        <form action="classdetails" method="POST">
                             <li class="list-group-item">${c.id}
                                 <input type="hidden" value="${c.id}" name="ClassId" />
                                 <button type="submit" class="btn btn-info">Details</button>
