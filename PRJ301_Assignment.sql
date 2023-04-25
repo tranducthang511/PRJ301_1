@@ -52,7 +52,7 @@ INSERT INTO Class_Student(class_id,student_id) VALUES('PRJ301_01','HE153650')
 INSERT INTO Class_Student(class_id,student_id) VALUES('PRJ301_01','HE141048')
 INSERT INTO Class_Student(class_id,student_id) VALUES('PRJ301_01','HE150977')
 
-INSERT INTO OpenClassRequest(id,subject) VALUES(HE151356,MAD101)
+INSERT INTO OpenClassRequest(id,subject) VALUES('HE151356','MAD101')
 
 INSERT INTO Admin (id,[name],dob,gender,email,[password]) VALUES (1,'Tran Duc Thang','2002-11-5', 1, 'thangtdhe160619@fpt.edu.vn', 'administrator96')
 GO
@@ -63,4 +63,5 @@ Select * from SubjectsStatus where id ='HE160619'
 Select * from Class_Student
 Select * from OpenClassRequest
 INSERT INTO Class_Student(class_id,student_id) VALUES('PRJ301_1','HE160619')
+Select * From Class_Student where student_id='HE176697'
 GO

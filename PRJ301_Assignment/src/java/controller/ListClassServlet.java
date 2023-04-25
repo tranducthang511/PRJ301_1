@@ -15,7 +15,7 @@ import model.*;
  *
  * @author thangtdhe160619
  */
-@WebServlet(name = "ListClassServlet", urlPatterns = {"listclass"})
+@WebServlet(name = "ListClassServlet", urlPatterns = {"/listclass"})
 public class ListClassServlet extends HttpServlet {
 
     @Override
@@ -35,6 +35,11 @@ public class ListClassServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
+        ClassDAO u = new ClassDAO();
+        ArrayList<model.Class> lst = new ArrayList();
+        lst = u.getClasses();
+        request.setAttribute("ListClass", lst);
+        request.getRequestDispatcher("ListClass.jsp").forward(request, response);
     }
 
     @Override

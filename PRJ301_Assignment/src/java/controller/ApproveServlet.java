@@ -15,23 +15,27 @@ import model.*;
  *
  * @author thangtdhe160619
  */
-@WebServlet(name = "ListRequestOpenClassServlet", urlPatterns = {"listrequest"})
-public class ListRequestOpenClassServlet extends HttpServlet {
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        PrintWriter pr = response.getWriter();
-        request.getRequestDispatcher("ListRequest.jsp").forward(request, response);
-    }
+@WebServlet(name = "ApproveServlet", urlPatterns = {"approve"})
+public class ApproveServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        String subject = request.getParameter("subject");
         PrintWriter pr = response.getWriter();
-        request.getRequestDispatcher("ListRequest.jsp").forward(request, response);
+        OpenClassRequestDAO u = new OpenClassRequestDAO();
+        ClassDAO q = new ClassDAO();
+        q.newClass(subject);
+        Class_StudentDAO p = new Class_StudentDAO();
+        ArrayList<String> listuser = u.getRequestUserId(subject);
+        for (String m : listuser) {
+            p.insert(q.getLatestClassIdBySubject(subject), m);
+        }
+        u.delete(subject);
+        SubjectsStatusDAO o = new SubjectsStatusDAO();
+        o.update(subject, session.getAttribute("user_id").toString());
+        request.getRequestDispatcher("listclass").forward(request, response);
     }
 
     @Override
