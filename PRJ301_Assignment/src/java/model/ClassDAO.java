@@ -64,4 +64,25 @@ public class ClassDAO extends MyDAO {
         }
         return (t);
     }
+        public Class getClassesById(String id){
+        xSql = "select * from Class where id = ?";
+        String xSubject, xtime;
+        Class x = null;
+
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                xSubject = rs.getString("subject");
+                xtime = rs.getString("time");
+                x = new Class(id, xSubject, xtime);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (x);
+    }
 }

@@ -4,10 +4,7 @@
     Author     : admin
 --%>
 <%@page import = "java.util.*" %>
-<%@page import = "model.Student" %>
-<%@page import = "model.StudentDAO" %>
-<%@page import = "model.SubjectsStatus" %>
-<%@page import = "model.SubjectsStatusDAO" %>
+<%@page import = "model.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
@@ -16,6 +13,11 @@
     SubjectsStatus x = u.getSubjectsStatusById(s.getStudentByEmail(session.getAttribute("username").toString()).getId());
     ArrayList<String> lst = new ArrayList();
     lst = u.getNotPassedSubjects(x.getId());
+    Class_StudentDAO cs = new Class_StudentDAO();
+    ArrayList<String> clst = cs.FindStudyingClass(session.getAttribute("user_id").toString());
+    ArrayList<model.Class> lst2 = new ArrayList();
+    ClassDAO p = new ClassDAO();
+    for(String n:clst){ lst2.add(p.getClassesById(n));}
 %>
 <html>
     <head>
@@ -75,6 +77,36 @@
                     </select>
                     <p><p><p><button type="submit" class="btn btn-primary">Register</button>
                 </form>
+                    =================================================
+                    <p>Studying Class: <%
+                    for(model.Class d:lst2){
+            %>
+
+            <%=d.getId()%> - time:  <%=d.getTime()%> 
+            (
+            <%if(d.getTime().equals("Slot1")){%>
+            7h30-9h tu thu 2 den thu 6
+            <%}%>
+            <%if(d.getTime().equals("Slot2")){%>
+            9h10-10h40 tu thu 2 den thu 6
+            <%}%>
+            <%if(d.getTime().equals("Slot3")){%>
+            10h50-12h20 tu thu 2 den thu 6
+            <%}%>
+            <%if(d.getTime().equals("Slot4")){%>
+            12h50-14h20 tu thu 2 den thu 6
+            <%}%>
+            <%if(d.getTime().equals("Slot5")){%>
+            14h30-16h tu thu 2 den thu 6
+            <%}%>
+            <%if(d.getTime().equals("Slot6")){%>
+            16h10-17h40 tu thu 2 den thu 6
+            <%}%>
+            <%if(d.getTime().equals("Slot7")){%>
+            18h-19h30 tu thu 2 den thu 6
+            <%}%>
+            )
+            <%}%>
             </div>
         </div>
     </body>

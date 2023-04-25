@@ -32,4 +32,23 @@ public class Class_StudentDAO extends MyDAO {
             e.printStackTrace();
         }
     }
+    public ArrayList<String> FindStudyingClass(String user_id){
+        xSql = "Select * from Class_Student where student_id=?";
+        ArrayList<String> t = new ArrayList();
+        try {
+            
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, user_id);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                String xClass_id = rs.getString("class_id");
+                t.add(xClass_id);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
 }
