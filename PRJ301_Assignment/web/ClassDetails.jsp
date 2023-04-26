@@ -25,6 +25,7 @@
         <title>Register</title>
     </head>
     <body>
+        <a href="logout">Log out</a>
         <div class="container-form">           
             <div class="details-in">
                 <h1>Class Name: <%=id%></h1>

@@ -28,8 +28,9 @@
         <link rel="shortcut icon" href="favicon.ico"/>
         <title>Register</title>
     </head>
-    <body>
+    <body>       
         <div class="container">
+            <a href="logout">Log out</a>
             <table class="table table-striped">
                 <thead>
                     <tr>

@@ -34,6 +34,7 @@ String[] subject = new String[]{"MAE101","PRF192","MAD101","PRO192","JPD113","LA
         <link rel="shortcut icon" href="../favicon.ico"/>
     </head>
     <body>
+        <a href="logout">Log out</a>
         <div class="container">
             <div class="container-form">
                 <h1>List Request </h1>

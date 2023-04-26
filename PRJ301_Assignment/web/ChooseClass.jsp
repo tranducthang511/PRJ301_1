@@ -22,6 +22,7 @@
         <title>Register</title>
     </head>
     <body>
+        <a href="logout">Log out</a>
         <div class="container-login">
             <h1>Register repeat a course</h1>
             <form action="joinclass" method="POST">
