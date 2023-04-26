@@ -102,7 +102,7 @@
                             <td><%=y.getDOB()%></td>
                             <td><%=y.isGender()%></td>
                             <td><%=y.getEmail()%></td>
-                            <td><a href="delete?delete_id=<%=y.getId()%>">  Delete </a> </td>
+                            <td><a href="delete?delete_id=<%=y.getId()%>" onclick="return confirm('Are you sure?')">  Delete </a> </td>
                         </tr>
                         <%}%>
                     </tbody>
