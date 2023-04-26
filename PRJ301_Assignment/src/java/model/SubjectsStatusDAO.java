@@ -168,4 +168,17 @@ public class SubjectsStatusDAO extends MyDAO {
             e.printStackTrace();
         }
     }
+    public void updateToNotPassed(String subject, String user_id) {
+        xSql = "update SubjectsStatus set " + subject + " = 'not passed' where id = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, user_id);
+            rs = ps.executeQuery();
+
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

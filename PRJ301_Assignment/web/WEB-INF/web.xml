@@ -72,6 +72,10 @@
         <servlet-name>AddStudentServlet</servlet-name>
         <servlet-class>controller.AddStudentServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteStudentFromClassServlet</servlet-name>
+        <servlet-class>controller.DeleteStudentFromClassServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>AddStudentServlet</servlet-name>
         <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteStudentFromClassServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

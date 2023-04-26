@@ -15,8 +15,8 @@ import model.*;
  *
  * @author thangtdhe160619
  */
-@WebServlet(name = "AddStudentServlet", urlPatterns = {"/add"})
-public class AddStudentServlet extends HttpServlet {
+@WebServlet(name = "DeleteStudentFromClassServlet", urlPatterns = {"/delete"})
+public class DeleteStudentFromClassServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,7 +26,14 @@ public class AddStudentServlet extends HttpServlet {
         if (session.getAttribute("role") != "admin") {
             request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
         }
-        session.setAttribute("isAddable", "yes");
+        String delete_id = request.getParameter("delete_id");
+        Class_StudentDAO u = new Class_StudentDAO();
+        u.delete(session.getAttribute("class_id").toString(), delete_id);
+        ClassDAO p = new ClassDAO();
+        model.Class y = p.getClassesById(session.getAttribute("class_id").toString());
+        String subject = y.getSubject();
+        SubjectsStatusDAO q = new SubjectsStatusDAO();
+        q.updateToNotPassed(subject, delete_id);
         request.getRequestDispatcher("ClassDetails.jsp").forward(request, response);
     }
 
@@ -38,19 +45,6 @@ public class AddStudentServlet extends HttpServlet {
         if (session.getAttribute("role") != "admin") {
             request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
         }
-        session.setAttribute("isAddable", "no");
-        String add_student_id = request.getParameter("add_student_id");
-        String class_id = session.getAttribute("class_id").toString();
-        SubjectsStatusDAO c = new SubjectsStatusDAO();
-        String check = c.checkStatus(class_id, add_student_id);
-        if (check.equals("not passed")) {
-            Class_StudentDAO u = new Class_StudentDAO();
-            ClassDAO p = new ClassDAO();
-            model.Class y = p.getClassesById(class_id);
-            String subject = y.getSubject();
-            u.insert(class_id, add_student_id);
-            c.update(subject, add_student_id);
-        } 
         request.getRequestDispatcher("ClassDetails.jsp").forward(request, response);
     }
 

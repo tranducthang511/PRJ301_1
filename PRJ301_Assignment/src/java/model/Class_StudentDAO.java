@@ -32,6 +32,17 @@ public class Class_StudentDAO extends MyDAO {
             e.printStackTrace();
         }
     }
+     public void delete(String class_id, String user_id) {
+       xSql = "Delete Class_Student where class_id ='"+class_id+"' and student_id='"+user_id+"'";
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public ArrayList<String> FindStudyingClass(String user_id){
         xSql = "Select * from Class_Student where student_id=?";
         ArrayList<String> t = new ArrayList();
