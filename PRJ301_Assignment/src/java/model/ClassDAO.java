@@ -167,4 +167,15 @@ public class ClassDAO extends MyDAO {
         }
         return (xId);
     }
+     public void updateTime (String Class_id, String xTime) {
+        xSql = "update Class set time = '"+xTime+"' where id = '"+Class_id+"'";
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();           
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

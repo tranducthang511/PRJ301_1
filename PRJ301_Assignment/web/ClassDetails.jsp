@@ -8,12 +8,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-    String id = (String)request.getAttribute("id");
+    String id = session.getAttribute("class_id").toString();
     ClassDAO u = new ClassDAO();
     model.Class x = u.getClassesById(id);
     Class_StudentDAO q= new Class_StudentDAO();
     ArrayList<String> liststudentid = q.FindStudentInClass(id);
     StudentDAO p = new StudentDAO();
+    String isEditable = session.getAttribute("isEditable").toString();
 %>
 <html>
     <head>
@@ -28,9 +29,26 @@
         <a href="logout">Log out</a>
         <div class="container-form">           
             <div class="details-in">
-                <h1>Class Name: <%=id%></h1>
+                <h1>Class ID: <%=id%></h1>
                 <p>Subject: <%=x.getSubject()%>
-                <p>Time:  <%=x.getTime()%> 
+                <p>Time:  <%=x.getTime()%>
+                    <%
+                        if(isEditable.equals("yes")) {
+                    %>
+                <form action="edit" method="POST">                   
+                    <select name="time">
+                        <option value="Slot1">Slot1</option>
+                        <option value="Slot2">Slot2</option>
+                        <option value="Slot3">Slot3</option>
+                        <option value="Slot4">Slot4</option>
+                        <option value="Slot5">Slot5</option>
+                        <option value="Slot6">Slot6</option>
+                        <option value="Slot7">Slot7</option>
+                    </select>
+                    <input type="submit" value="save">
+                </form>
+                <%}%>
+                <a href="edit">edit</a>
                 (
                 <%if(x.getTime().equals("Slot1")){%>
                 7h30-9h tu thu 2 den thu 6
@@ -56,29 +74,29 @@
                 )
                 <p> List students:
                 <p>
-                    <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">name</th>
-                        <th scope="col">dob</th>
-                        <th scope="col">gender</th>
-                        <th scope="col">email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%for(String student_id : liststudentid){Student y=p.getStudentById(student_id);%>
-                    <tr>
-                        <th scope="row"><%=y.getId()%></th>
-                        <td><%=y.getName()%></td>
-                        <td><%=y.getDOB()%></td>
-                        <td><%=y.isGender()%></td>
-                        <td><%=y.getEmail()%></td>
-                    </tr>
-                    <%}%>
-                </tbody>
-            </table>
-                <p><p><button onclick='window.history.go(-1);'>Back to previous page</button>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">name</th>
+                            <th scope="col">dob</th>
+                            <th scope="col">gender</th>
+                            <th scope="col">email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%for(String student_id : liststudentid){Student y=p.getStudentById(student_id);%>
+                        <tr>
+                            <th scope="row"><%=y.getId()%></th>
+                            <td><%=y.getName()%></td>
+                            <td><%=y.getDOB()%></td>
+                            <td><%=y.isGender()%></td>
+                            <td><%=y.getEmail()%></td>
+                        </tr>
+                        <%}%>
+                    </tbody>
+                </table>
+                <p><p><a href="listclass">Back to previous page</a>
             </div>
         </div>
     </body>
