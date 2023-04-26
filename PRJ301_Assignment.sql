@@ -16,11 +16,14 @@ Create Table SubjectsStatus (id varchar(8),[MAE101] varchar(30),[PRF192] varchar
 GO
 Create Table Class (id varchar(10),[subject] varchar(10), [time] varchar(30), PRIMARY KEY (id))
 GO
-Create Table Class_Student (class_id varchar(10),student_id varchar(8), PRIMARY KEY (class_id,student_id))
+Create Table Class_Student (class_id varchar(10),student_id varchar(8), PRIMARY KEY (class_id,student_id), CONSTRAINT FK_class_student1 FOREIGN KEY (student_id)
+    REFERENCES Student(id), CONSTRAINT FK_class_student2 FOREIGN KEY (class_id)
+    REFERENCES Class(id))
 GO
 Create Table [Admin] (id int,[name] varchar(30), dob Date, gender bit, email varchar(30), [password] varchar(30), PRIMARY KEY (id))
 GO
-Create Table [OpenClassRequest] (id varchar(8), [subject] varchar(10), PRIMARY KEY (id))
+Create Table [OpenClassRequest] (id varchar(8), [subject] varchar(10), PRIMARY KEY (id), CONSTRAINT FK_request_student FOREIGN KEY (id)
+    REFERENCES Student(id))
 GO
 INSERT INTO Student (id,[name],dob,gender,email,[password]) VALUES ('HE160619','Tran Duc Thang','2002-11-5', 1, 'thangtdhe160619@fpt.edu.vn', 'abc123')
 INSERT INTO Student (id,[name],dob,gender,email,[password]) VALUES ('HE140465','Nguyen Duc Duy','2000-1-1', 1, 'duyndhe140465@fpt.edu.vn', 'abc123')

@@ -22,10 +22,18 @@ public class ApproveServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
-        String subject = request.getParameter("subject");
+        if (session.getAttribute("role") != "admin") {
+            request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+        }
         PrintWriter pr = response.getWriter();
         OpenClassRequestDAO u = new OpenClassRequestDAO();
+        String subject = request.getParameter("subject");
+        String typeaction = request.getParameter("typeaction");
+        if (typeaction.equals("decline")) {
+            u.delete(subject);
+            request.getRequestDispatcher("listrequest").forward(request, response);
+        }
+        else {
         ClassDAO q = new ClassDAO();
         q.newClass(subject);
         Class_StudentDAO p = new Class_StudentDAO();
@@ -37,6 +45,7 @@ public class ApproveServlet extends HttpServlet {
         SubjectsStatusDAO o = new SubjectsStatusDAO();
         o.update(subject, session.getAttribute("user_id").toString());
         request.getRequestDispatcher("listclass").forward(request, response);
+        }
     }
 
     @Override

@@ -40,10 +40,10 @@ String[] subject = new String[]{"MAE101","PRF192","MAD101","PRO192","JPD113","LA
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <li class="nav-item active">
+                            <li class="nav-item">
                                 <a class="nav-link" href="listclass">Classes</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item active">
                                 <a class="nav-link" href="listrequest">Requests<span class="sr-only">(current)</span></a>
                             </li>
                         </ul>
@@ -54,8 +54,9 @@ String[] subject = new String[]{"MAE101","PRF192","MAD101","PRO192","JPD113","LA
                     <%for(int i=0;i<11;i++){ if(count[i]!=0){%>
                     <form action="approve" method="POST">
                         <li class="list-group-item"><%=subject[i]%> amount: <%=count[i]%>
-                            <input type="hidden" value="<%=subject[i]%>" name="subject" />
-                            <button type="submit" class="btn btn-info">Approve</button>
+                            <input type="hidden" name="subject" value="<%=subject[i]%>">
+                            <button type="submit" value="approve" name="typeaction" class="btn btn-info">Approve</button>
+                            <button type="submit" value="decline" name="typeaction" class="btn btn-reject">Decline</button>
                         </li>
                     </form>
                     <%}}%>
