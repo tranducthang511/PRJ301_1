@@ -28,6 +28,8 @@ public class JoinClassServlet extends HttpServlet {
         if (cl.equals("newclass")) {
             OpenClassRequestDAO o = new OpenClassRequestDAO();
             o.insert(session.getAttribute("subject").toString(), session.getAttribute("user_id").toString());
+            SubjectsStatusDAO s = new SubjectsStatusDAO();
+            s.update(session.getAttribute("subject").toString(), session.getAttribute("user_id").toString());
             response.getWriter().println("request successfully");
             response.getWriter().println("<p><a href=\"Register.jsp\"> Back to home </a>");
         } else {

@@ -30,6 +30,11 @@ public class ApproveServlet extends HttpServlet {
         String subject = request.getParameter("subject");
         String typeaction = request.getParameter("typeaction");
         if (typeaction.equals("decline")) {
+            ArrayList<String> listuser = u.getRequestUserId(subject);
+            for (String m : listuser) {
+            SubjectsStatusDAO o = new SubjectsStatusDAO();
+            o.updateToNotPassed(subject, m);
+        }
             u.delete(subject);
             request.getRequestDispatcher("listrequest").forward(request, response);
         }
@@ -40,10 +45,10 @@ public class ApproveServlet extends HttpServlet {
         ArrayList<String> listuser = u.getRequestUserId(subject);
         for (String m : listuser) {
             p.insert(q.getLatestClassIdBySubject(subject), m);
+            SubjectsStatusDAO o = new SubjectsStatusDAO();
+            o.update(subject, m);
         }
         u.delete(subject);
-        SubjectsStatusDAO o = new SubjectsStatusDAO();
-        o.update(subject, session.getAttribute("user_id").toString());
         request.getRequestDispatcher("listclass").forward(request, response);
         }
     }
