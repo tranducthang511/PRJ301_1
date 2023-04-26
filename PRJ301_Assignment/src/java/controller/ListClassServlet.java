@@ -43,6 +43,7 @@ public class ListClassServlet extends HttpServlet {
         lst = u.getClasses();
         request.setAttribute("ListClass", lst);
         session.setAttribute("isEditable", "no");
+        session.setAttribute("isAddable", "no");
         request.getRequestDispatcher("ListClass.jsp").forward(request, response);
     }
 

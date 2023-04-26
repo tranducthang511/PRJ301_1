@@ -21,6 +21,27 @@ import java.util.logging.Logger;
  */
 public class SubjectsStatusDAO extends MyDAO {
 
+    public String checkStatus(String class_id, String student_id) {
+        ClassDAO u = new ClassDAO();
+        Class y = u.getClassesById(class_id);
+        String subject = y.getSubject();
+        xSql = "select * from SubjectsStatus where id = ?";
+        String check = null;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, student_id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                check = rs.getString(subject);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
+
     public SubjectsStatus getSubjectsStatusById(String xId) {
         xSql = "select * from SubjectsStatus where id = ?";
         String xMAE101;
@@ -135,12 +156,12 @@ public class SubjectsStatusDAO extends MyDAO {
     }
 
     public void update(String subject, String user_id) {
-        xSql = "update SubjectsStatus set "+subject+" = 'studying' where id = ?";
+        xSql = "update SubjectsStatus set " + subject + " = 'studying' where id = ?";
         try {
             ps = con.prepareStatement(xSql);
             ps.setString(1, user_id);
             rs = ps.executeQuery();
-            
+
             rs.close();
             ps.close();
         } catch (Exception e) {

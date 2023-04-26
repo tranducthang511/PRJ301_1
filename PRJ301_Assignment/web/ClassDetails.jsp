@@ -15,6 +15,7 @@
     ArrayList<String> liststudentid = q.FindStudentInClass(id);
     StudentDAO p = new StudentDAO();
     String isEditable = session.getAttribute("isEditable").toString();
+    String isAddable = session.getAttribute("isAddable").toString();
 %>
 <html>
     <head>
@@ -73,6 +74,14 @@
                 <%}%>
                 )
                 <p> List students:
+                    <%
+                        if(isAddable.equals("yes")) {
+                    %>
+                <form action="add" method="POST">                   
+                    <input type="text" name="add_student_id" value="">
+                    <input type="submit" value="add">
+                </form>
+                <%}%>
                 <p>
                 <table class="table table-striped">
                     <thead>
@@ -80,8 +89,9 @@
                             <th scope="col">id</th>
                             <th scope="col">name</th>
                             <th scope="col">dob</th>
-                            <th scope="col">gender</th>
+                            <th scope="col">gender</th>     
                             <th scope="col">email</th>
+                            <td align="center"> <a href="add"/> Add </a> </td>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,6 +102,7 @@
                             <td><%=y.getDOB()%></td>
                             <td><%=y.isGender()%></td>
                             <td><%=y.getEmail()%></td>
+                            <td><a href="delete?delete_id=<%=y.getId()%>">  Delete </a> </td>
                         </tr>
                         <%}%>
                     </tbody>
