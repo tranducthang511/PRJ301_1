@@ -24,7 +24,7 @@ public class AddStudentServlet extends HttpServlet {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
         if (session.getAttribute("role") != "admin") {
-            request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
         session.setAttribute("isAddable", "yes");
         request.getRequestDispatcher("ClassDetails.jsp").forward(request, response);
@@ -36,7 +36,7 @@ public class AddStudentServlet extends HttpServlet {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
         if (session.getAttribute("role") != "admin") {
-            request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
         session.setAttribute("isAddable", "no");
         String add_student_id = request.getParameter("add_student_id");

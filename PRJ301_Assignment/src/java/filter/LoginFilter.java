@@ -26,16 +26,32 @@ public class LoginFilter implements Filter {
             throws IOException, ServletException {
 
         HttpSession session = ((HttpServletRequest) request).getSession();
+        String role = request.getParameter("role");
         String xusername = request.getParameter("username");
         String xpassword = request.getParameter("password");
-        StudentDAO u = new StudentDAO();
-        if (xpassword.equals(u.getStudentByEmail(xusername).getPassword())) {
-            session.setAttribute("username", xusername);
-            session.setAttribute("password", xpassword);
-            chain.doFilter(request, response);
-        } else {
-            request.setAttribute("errorLogin", "Wrong username or password!!!");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+        if (role.equals("admin")) {
+            AdminDAO u = new AdminDAO();
+            if (xpassword.equals(u.getAdminByUsername(xusername).getPassword())) {
+                session.setAttribute("username", xusername);
+                session.setAttribute("password", xpassword);
+                session.setAttribute("role", role);
+                chain.doFilter(request, response);
+            } else {
+                request.setAttribute("errorLogin", "Wrong username or password!!!");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
+        }
+        if (role.equals("student")) {
+            StudentDAO u = new StudentDAO();
+            if (xpassword.equals(u.getStudentByEmail(xusername).getPassword())) {
+                session.setAttribute("username", xusername);
+                session.setAttribute("password", xpassword);
+                session.setAttribute("role", role);
+                chain.doFilter(request, response);
+            } else {
+                request.setAttribute("errorLogin", "Wrong username or password!!!");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
         }
     }
 

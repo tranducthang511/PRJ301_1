@@ -23,7 +23,7 @@ public class ListRequestOpenClassServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
-        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("login.jsp").forward(request, response);
         request.getRequestDispatcher("ListRequest.jsp").forward(request, response);
     }
 
@@ -32,7 +32,7 @@ public class ListRequestOpenClassServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
-        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("login.jsp").forward(request, response);
         request.getRequestDispatcher("ListRequest.jsp").forward(request, response);
     }
 

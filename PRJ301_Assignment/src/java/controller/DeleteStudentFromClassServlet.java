@@ -24,7 +24,7 @@ public class DeleteStudentFromClassServlet extends HttpServlet {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
         if (session.getAttribute("role") != "admin") {
-            request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
         String delete_id = request.getParameter("delete_id");
         Class_StudentDAO u = new Class_StudentDAO();
@@ -43,7 +43,7 @@ public class DeleteStudentFromClassServlet extends HttpServlet {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
         if (session.getAttribute("role") != "admin") {
-            request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
         request.getRequestDispatcher("ClassDetails.jsp").forward(request, response);
     }

@@ -15,6 +15,10 @@
                 <h4 class="error">${errorLogin}</h4>
                 <h1>Login</h1>
                 <form action="login" method="POST">
+                    Role:<select name="role">
+                        <option value="student">Student</option>
+                        <option value="admin">Lecture</option>
+                    </select>
                     <div class="form-group">
                         <label>Username</label>
                         <input type="text" class="form-control" placeholder="Enter username" name="username">

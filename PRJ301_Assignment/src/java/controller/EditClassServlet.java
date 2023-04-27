@@ -23,7 +23,7 @@ public class EditClassServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
-        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("login.jsp").forward(request, response);
         session.setAttribute("isEditable", "yes");
         request.getRequestDispatcher("ClassDetails.jsp").forward(request, response);
     }
@@ -33,7 +33,7 @@ public class EditClassServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
-        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("login.jsp").forward(request, response);
         session.setAttribute("isEditable", "no");
         String time = request.getParameter("time");
         String class_id = session.getAttribute("class_id").toString();

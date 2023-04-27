@@ -23,7 +23,7 @@ public class ClassDetailsServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
-        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("login.jsp").forward(request, response);
         request.getRequestDispatcher("ClassDetails.jsp").forward(request, response);
     }
 
@@ -32,7 +32,7 @@ public class ClassDetailsServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
-        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+        if(session.getAttribute("role")!="admin")request.getRequestDispatcher("login.jsp").forward(request, response);
         String class_id = request.getParameter("ClassId");
         session.setAttribute("class_id", class_id);
         request.getRequestDispatcher("ClassDetails.jsp").forward(request, response);

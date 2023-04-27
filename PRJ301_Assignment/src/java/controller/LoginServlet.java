@@ -25,12 +25,19 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         PrintWriter pr = response.getWriter();
         pr.println("welcome " + session.getAttribute("username"));
+        String role = session.getAttribute("role").toString();
+        if (role.equals("admin")) {
+            session.setAttribute("role", "admin");
+        request.getRequestDispatcher("listclass").forward(request, response);
+        }
+        if (role.equals("student")) {
         SubjectsStatusDAO u = new SubjectsStatusDAO();
         StudentDAO s = new StudentDAO();
         String xEmail = session.getAttribute("username").toString();
         String xId = (String) s.getStudentByEmail(xEmail).getId();
         session.setAttribute("user_id", xId);
         request.getRequestDispatcher("Register.jsp").forward(request, response);
+        }
     }
     
     @Override

@@ -23,7 +23,7 @@ public class ApproveServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("role") != "admin") {
-            request.getRequestDispatcher("adminlogin.jsp").forward(request, response);
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         }
         PrintWriter pr = response.getWriter();
         OpenClassRequestDAO u = new OpenClassRequestDAO();
